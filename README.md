@@ -24,3 +24,9 @@ pip install requests
   python lambdapolly.py
   ```
 
+![image](https://github.com/anthonycs4/LambdaPolly/assets/165516654/989653ef-3195-457c-9d3c-52a1a52ff47c)
+![image](https://github.com/anthonycs4/LambdaPolly/assets/165516654/f2db27bf-e2a8-4878-96ee-6a19d0ea53c9)
+
+  
+
+
