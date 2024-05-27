@@ -2,32 +2,34 @@ import requests
 import base64
 import json
 
-# URL de tu API
-api_url = "https://56q2rxpufj.execute-api.us-east-2.amazonaws.com/prod/synthesize?text=hola,%20%C2%BFcomo%20estas?%20yo%20estoy%20muy%20bien"
+# Prompt the user to enter the text to synthesize
+text = input("Enter the text to synthesize: ")
 
+# URL of the Polly API with the text as a parameter
+api_url = f"https://56q2rxpufj.execute-api.us-east-2.amazonaws.com/prod/synthesize?text={text}"
 
-# Hacer la solicitud GET a la API
+# Make a GET request to the API
 response = requests.get(api_url)
 
-# Comprobar si la solicitud fue exitosa
+# Check if the request was successful
 if response.status_code == 200:
-    # Parsear la respuesta JSON
+    # Parse the JSON response
     response_data = response.json()
 
-    # Obtener el contenido de audio en base64
+    # Get the audio content in base64
     audio_base64 = response_data.get('audioContent')
 
     if audio_base64:
-        # Decodificar el contenido de audio
+        # Decode the audio content
         audio_data = base64.b64decode(audio_base64)
 
-        # Guardar el audio en un archivo
+        # Save the audio to a file
         with open("output.mp3", "wb") as audio_file:
             audio_file.write(audio_data)
 
-        print("Archivo guardado como output.mp3")
+        print("File saved as output.mp3")
     else:
-        print("No se encontró el contenido de audio en la respuesta.")
+        print("No audio content found in the response.")
 else:
-    print(f"Error en la solicitud: {response.status_code}")
+    print(f"Error in the request: {response.status_code}")
     print(response.text)
